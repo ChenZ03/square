@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'ss';
+    src: url(/assets/fonts/Sitka\ Small.ttf);
+}
+
+@font-face {
+    font-family: 'SitkaB';
+    src: url(/assets/fonts/sitka-small-599.ttf);
+    font-weight: bold;
+}
+
+html{
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    /* background-color: #33333D; */
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+/* MENUBAR  */
+
+.menubar{
+    background-color: #33333D;
+    width: 15%;
+    height: 100vh;
+}
+
+.icons i{
+    color: #6C6C73;
+    font-size: 35px;
+}
+
+#overview{
+    color: white;
+    font-size: 40px;
+}
+
+#overview_text{
+    display: block ;
+}
+
+.icons p{
+    color: white;
+    font-family: 'SitkaB';
+    font-weight: bold;
+    font-size: 15px;
+    display: none;
+}
+

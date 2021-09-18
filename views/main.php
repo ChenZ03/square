@@ -1,4 +1,10 @@
 <?php
-session_start();
-var_dump($_SESSION['user_data']);
+$title = 'Overview';
+
+function get_content(){
 ?>
+
+
+<?php
+}
+require_once 'layout.php';
