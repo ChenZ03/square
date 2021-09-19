@@ -19,12 +19,6 @@ function get_content(){
                 <div class="task-chart mx-5 py-5">
                     <canvas id="taskChart"></canvas>
                 </div>
-                <?php if($task_completed == 0 && $task_incomplete == 0): ?>
-                    <h2 class="text-white text-center box-text pt-4">No task available</h2>
-                <?php else: ?>
-                    <div class="chart-task-list">
-                    </div>
-                <?php endif ; ?>
                 <div class="task-list py-3">
                     <?php if($task_incomplete == 0): ?>
                         <h3 class="text-white text-center">No Task Available</h3>

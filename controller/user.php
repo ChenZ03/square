@@ -8,6 +8,7 @@ $case = $_REQUEST['action'];
 switch ($case){
     case 'register':
         $id = $_REQUEST['id'];
+        $org = $_REQUEST['org'];
         $username = $_REQUEST['username'];
         $password = $_REQUEST['password'];
         $field = $_REQUEST['field'];
@@ -21,8 +22,14 @@ switch ($case){
             break;
         }else{
             echo "User successfully registered, please proceed to login";
-            $query2 = "INSERT INTO users(user_id, username, password, field) VALUES ('$id', '$username', '$password', '$field')";
-            mysqli_query($cn, $query2);
+            if($org == 'self'){
+                $query2 = "INSERT INTO users(user_id, username, password, field) VALUES ('$id', '$username', '$password', '$field')";
+                mysqli_query($cn, $query2);
+            }else{
+                $query2 = "INSERT INTO users(user_id, username, password, field, organization) VALUES ('$id', '$username', '$password', '$field', '$org')";
+                mysqli_query($cn, $query2);
+            }
+            
             break;
         }
         break;

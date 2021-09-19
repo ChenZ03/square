@@ -20,7 +20,10 @@
 
     <?php 
     session_start();
-    require_once 'controller/connection.php' ?>
+    require_once 'controller/connection.php';
+    $query = "SELECT * FROM organization";
+    $org = mysqli_fetch_all(mysqli_query($GLOBALS['cn'], $query), MYSQLI_ASSOC);
+    ?>
     <div class="black-box"></div>
 
     <div class="flex h-screen justify-center items-center  ">
@@ -71,15 +74,19 @@
                     </select>
                 </div>
 
-                <!-- <div class="form-group py-1 reg">
+                <div class="form-group py-1 reg">
                     <div class="form-label text-white">
                         <i class="bi bi-geo-fill"></i>
                         <label for="organization">Organization</label>
                     </div>          
                     <select class="form-select form-select-sm" id="organization" required>
                         <option selected disabled>Select your organization</option>
+                        <option value="self">NA (Select this for individual)</option>
+                        <?php foreach($org as $o): ?>
+                            <option value="<?php echo $o['id'] ?>"><?php echo $o['name'] ?></option>
+                        <?php endforeach; ?>
                     </select>
-                </div> -->
+                </div>
             </form>
             <div class="button-group mt-5 mb-5">
                 <button class="text-white reg" id="register" value="Register" >Signup</button>
@@ -110,32 +117,41 @@
             let password = $('#password').val()
             let passowrd2 = $('#password2').val()
             let field = $('#field').val()
+            let org = $('#organization').val()
             if(username != '' && password.length > 8 && passowrd2 == password && field != ''){
-                let id = ''
-                if(field == 'self'){
-                    id += 'I'
-                }else if (field == 'company'){
-                    id += 'C'
+                if((field == 'self' && org != 'self') || (field == 'school' && !org.startsWith('S') ) || (field == 'company' && !org.startsWith('C'))){
+                    alert('Please select organization according to your field')
                 }else{
-                    id += 'S'
+                    let id = ''
+                    if(field == 'self'){
+                        id += 'I'
+                    }else if (field == 'company'){
+                        id += 'C'
+                    }else{
+                        id += 'S'
+                    }
+                    id += Date.now()
+                    console.log(id)
+                    $.ajax({
+                        type: 'post',
+                        url: '/controller/user.php',
+                        data: {
+                            action : 'register',
+                            id : id,
+                            username : username,
+                            password : password,
+                            field: field,
+                            org: org
+                        },
+                        success: function(response){
+                            alert(response)
+                            $('.reg').toggle('slow');
+                            $('.log').toggle('slow');
+                        },
+                    
+                    })
                 }
-                id += Date.now()
-                console.log(id)
-                $.ajax({
-                    type: 'post',
-                    url: '/controller/user.php',
-                    data: {
-                        action : 'register',
-                        id : id,
-                        username : username,
-                        password : password,
-                        field: field
-                    },
-                    success: function(response){
-                        alert(response)
-                    },
-                   
-                })
+                
             }else{
                 alert('Please meet all the requirements of the form')
             }
