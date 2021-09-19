@@ -1,7 +1,7 @@
 <?php 
-
-require_once 'connection.php';
 session_start();
+require_once 'connection.php';
+
 
 $case = $_REQUEST['action'];
 
@@ -25,6 +25,7 @@ switch ($case){
             mysqli_query($cn, $query2);
             break;
         }
+        break;
 
     case 'login':
         $username = $_REQUEST['username'];
@@ -37,6 +38,7 @@ switch ($case){
             $pw = mysqli_fetch_assoc($result);
             if($pw['password'] = $password){
                 $_SESSION['user_data'] = $pw;
+                $_SESSION['page'] = 'overview';
                 echo "success";
             }else{
                 echo "fail";
@@ -45,6 +47,16 @@ switch ($case){
             echo "Invalid user";
             break;
         }
+        break;
+
+    case 'logout':
+        session_destroy();
+        unset($_SESSION);
+        break;
+
+    default :
+        echo "Error";
+        break;
         
 }
 

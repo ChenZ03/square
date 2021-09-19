@@ -15,16 +15,47 @@ html{
 }
 
 body{
-    /* background-color: #33333D; */
+    background-color: #33333D;
     width: 100%;
     height: 100vh;
-    overflow: hidden;
+    /* overflow: hidden; */
+}
+
+/* HEADER  */
+.header{
+    position: relative;
+    width: 100%;
+    height: 15%;
+    background-color: #33333D;
+}
+
+.header h1{
+    font-size: 50px;
+    font-family: 'SitkaB';
+    font-weight: bold;
+}
+
+.header .user{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 30px;
+    font-family: 'SitkaB';
+    font-weight: bold;
+    height: 100%;
+}
+
+.user i{
+    font-size: 50px;
+    margin-top: -5%;
 }
 
 
 /* MENUBAR  */
 
 .menubar{
+    position: absolute;
+    top: 0;
     background-color: #33333D;
     width: 15%;
     height: 100vh;
@@ -33,15 +64,21 @@ body{
 .icons i{
     color: #6C6C73;
     font-size: 35px;
+    transition: 0.4s ease;
 }
 
-#overview{
+.selected{
+    padding-bottom: 0.8rem !important;
+    padding-top: 0.8rem !important;
+}
+
+.selected i{
     color: white;
     font-size: 40px;
 }
 
-#overview_text{
-    display: block ;
+.selected p{
+    display: block !important;
 }
 
 .icons p{
@@ -51,4 +88,82 @@ body{
     font-size: 15px;
     display: none;
 }
+
+.icons i:hover{
+    font-size: 40px;
+    color: white;
+    cursor: pointer
+}
+
+
+/* MAIN  */
+.content{
+    margin-left: 15%;
+    height: 85vh;
+    background-color: #33333D;
+    flex-wrap: wrap;
+}
+
+
+/* OVERVIEW  */
+.box-text{
+    padding-top: 20px;
+}
+.navigate{
+    margin-top: 10px;
+    padding: 5px 25px 5px 25px;
+    color: white;
+    border: 2px solid #CD3E71;
+    border-radius: 30px;
+    transition: 0.4s ease;
+    background-color: transparent;
+    height: 40px;
+}
+.navigate:hover{
+    background-color: #CD3E71;
+    transform: scale(1.05);
+}
+
+/* task box */
+.task-box{
+    position: relative;
+    border: 1px solid #CD3E71;
+    height: 450px;
+    width: 42%;
+    overflow: hidden;
+}
+.task-chart{
+    width: 300px;
+}
+.li-task{
+    opacity: 80%;
+    color: white;
+    font-size: 18px;
+    padding-top: 25px;
+}
+
+.li-task::before{
+    content: "•   ";
+    color: #005e58;
+    padding-right: 10px;
+}
+
+.task-list{
+    width: 50%;
+}
+
+/* goals box  */
+.goal-box{
+    border: 1px solid #CD3E71;
+    height: 450px;
+    width: 42%;
+    margin-left: 50px;
+}
+/* event box  */
+.event-box{
+    border: 1px solid #CD3E71;
+    height: 300px;
+    width: 87%;
+}
+
 
