@@ -3,19 +3,22 @@ $title = 'Overview';
 require_once '../controller/connection.php';
 
 function get_content(){
+
     // TASK 
     $userId = $_SESSION['user_data']['user_id'];
+    $org = $_SESSION['user_data']['organization'];
     $query = "SELECT * FROM task where user_id = '$userId' AND done = 1 ";
     $task_completed = mysqli_num_rows(mysqli_query($GLOBALS['cn'], $query));
     $query = "SELECT * FROM task where user_id = '$userId' AND done = 0 ";
     $task_incomplete = mysqli_num_rows(mysqli_query($GLOBALS['cn'], $query));
+      
 ?>
 
 <body>
     <div class="content d-flex">
         <div class="task-box">
             <h2 class="text-white text-center box-text">TASK</h2>
-            <div class="d-flex">
+            <div class="d-flex align-items-center justify-content-center">
                 <div class="task-chart mx-5 py-5">
                     <canvas id="taskChart"></canvas>
                 </div>
@@ -57,7 +60,7 @@ function get_content(){
                 {
                     label : 'No Task',
                     data: [100],
-                    backgroundColor : ["#005e58"],
+                    backgroundColor : ["#09b57d"],
                 }
             ]
         }
