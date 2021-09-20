@@ -28,6 +28,8 @@ switch ($case){
             }else{
                 $query2 = "INSERT INTO users(user_id, username, password, field, organization) VALUES ('$id', '$username', '$password', '$field', '$org')";
                 mysqli_query($cn, $query2);
+                $query3 = "UPDATE organization SET member_count = member_count + 1 WHERE id = '$org' "; 
+                mysqli_query($cn, $query3);
             }
             
             break;

@@ -240,7 +240,29 @@ body{
     transform: scale(1.05);
 }
 
+.mm{
+    background-color: #33333D !important;
+    color: white !important;
+}
 
+.modal-header{
+    border-bottom: 1px solid gray !important;
+}
+
+.modal-footer{
+    border: none !important;
+}
+
+.two{
+    border-radius: 0px !important;
+}
+
+.form-control{
+    opacity: 80%;
+    border-radius: 10px;
+}
+
+    
 
 
 
