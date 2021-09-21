@@ -116,7 +116,7 @@ function get_content(){
                                         ?>
                                         <option value="everyone">Everyone</option>
                                         <?php foreach($members as $member): ?>
-                                            <option value="<?php echo $member['user_id'] ?>"><?php echo $member['user_id'] ?></option>
+                                            <option value="<?php echo $member['user_id'] ?>"><?php echo $member['user_id'], ' ', $member['username'] ?></option>
                                         <?php endforeach ?>
                                         <?php endif; ?>
                                     </select>

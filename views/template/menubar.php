@@ -37,6 +37,11 @@
         window.location.href = "./events.php";
     })
 
+    $('#goals').click(function(e){
+        e.preventDefault
+        window.location.href = "./goals.php";
+    })
+
     $('#logout').click(function(e){
         var yes = confirm('Are you sure you want to logout?');
         if(yes){

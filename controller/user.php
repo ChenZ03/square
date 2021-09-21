@@ -31,6 +31,8 @@ switch ($case){
                 $query3 = "UPDATE organization SET member_count = member_count + 1 WHERE id = '$org' "; 
                 mysqli_query($cn, $query3);
             }
+            $query = "INSERT INTO goals(user_id) VALUES ('$id')";
+            mysqli_query($cn, $query);
             
             break;
         }

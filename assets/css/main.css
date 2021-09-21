@@ -156,6 +156,10 @@ body{
     width: 42%;
     margin-left: 50px;
 }
+.goal-chart{
+    width: 300px;
+}
+
 /* event box  */
 .event-box{
     border: 1px solid #CD3E71;
