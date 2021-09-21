@@ -26,7 +26,7 @@ function get_content(){
     if($org != NULL){
         $org_goal_query = "SELECT * FROM org_goal WHERE org_id = '$org'";
         $org_goals_num = mysqli_num_rows(mysqli_query($GLOBALS['cn'], $org_goal_query));
-        $goals['org'] = intval($org_goals_num);
+        $goals['Organization'] = intval($org_goals_num);
     }
 
 ?>
@@ -174,6 +174,12 @@ function get_content(){
                     pointLabels: {
                         color: 'white'
                     },
+                    ticks: {
+                        font :{
+                            size : 10,
+                        },
+                        BackgroundColor : 'none'
+                    }
                     
                 }
             }

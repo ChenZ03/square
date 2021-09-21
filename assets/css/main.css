@@ -266,6 +266,78 @@ body{
     border-radius: 10px;
 }
 
+/* GOALS  */
+
+.goals-row{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 90%;
+}
+
+.goal-page-list{
+    width: 80%;
+    height: 70%;
+    margin-left: 40px;
+    overflow-y: scroll;
+}
+
+.distribution{
+    border: 1px solid #CD3E71;
+    height: 400px;
+    margin-left: 50px;
+}
+
+.health, .skills, .education, .social, .org{
+    border: 1px solid #CD3E71;
+    height: 400px;
+    flex : 33.33%;
+    margin-left: 50px;
+}
+
+
+.goal-page-list ul li{
+    padding-top: 30px;
+    list-style-type: disc;
+    color: #01BC81;
+}
+
+.achieved{
+    padding: 5px 10px 5px 10px;
+    color: white;
+    border: 2px solid #CD3E71;
+    border-radius: 30px;
+    transition: 0.4s ease;
+    background-color: transparent;
+    height: 35px;
+    font-size: 14px;
+}
+
+.achieved:hover{
+    background-color: #CD3E71;
+    transform: scale(1.05);
+}
+
+
+
+
+.scroll::-webkit-scrollbar{
+    width: 10px;
+ }
+ 
+ .scroll::-webkit-scrollbar-track {
+     background-color: transparent;
+ }
+ 
+ .scroll::-webkit-scrollbar-thumb {
+     background-color: #CD3E7130;
+     border-radius: 20px;
+     transition: 400ms ease;
+ }
+ 
+ .scroll::-webkit-scrollbar-thumb:hover {
+     background-color: #CD3E7180;
+ }
+
     
 
 

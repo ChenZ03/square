@@ -36,5 +36,82 @@ switch ($case){
         }
 
         break;
+
+    case 'achieved_goal_org':
+        $id = $_REQUEST['id'];
+        $query  = "UPDATE org_goal SET achieved = 1 WHERE id = $id";
+        mysqli_query($cn, $query);
+        break;
+
+    case 'achieved_goal':
+        $type = $_REQUEST['type'];
+        $id = $_REQUEST['id'];
+        if($type == 'health'){
+            $query  = "UPDATE health_goal SET achieved = 1 WHERE id = $id";
+            mysqli_query($cn, $query);
+            break;
+        }else if($type == 'edu'){
+            $query  = "UPDATE education_goal SET achieved = 1 WHERE id = $id";
+            mysqli_query($cn, $query);
+            break;
+        }else if($type == 'skills'){
+            $query  = "UPDATE skills_goal SET achieved = 1 WHERE id = $id";
+            mysqli_query($cn, $query);
+            break;
+        }else if($type == 'social'){
+            $query  = "UPDATE social_goal SET achieved = 1 WHERE id = $id";
+            mysqli_query($cn, $query);
+            break;
+        }else{
+            echo "ERROR";
+            break;
+        }
+        break;
+    
+    case 'add_goal':
+        $title = $_REQUEST['title'];
+        $type = $_REQUEST['type'];
+        $goal_id = $_REQUEST['goalId'];
+        if($type == 'health'){
+            $query = "INSERT INTO health_goal(goal_id, title) VALUES ('$goal_id', '$title')";
+            mysqli_query($cn, $query);
+            $query = "UPDATE goals SET health_count = health_count + 1 WHERE id = '$goal_id' ";
+            mysqli_query($cn, $query);
+            break;
+        }else if($type == 'edu'){
+            $query = "INSERT INTO education_goal(goal_id, title) VALUES ('$goal_id', '$title')";
+            mysqli_query($cn, $query);
+            $query = "UPDATE goals SET education_count = education_count + 1 WHERE id = '$goal_id' ";
+            mysqli_query($cn, $query);
+            break;
+        }else if($type == 'skills'){
+            $query = "INSERT INTO skills_goal(goal_id, title) VALUES ('$goal_id', '$title')";
+            mysqli_query($cn, $query);
+            $query = "UPDATE goals SET skills_count = skills_count + 1 WHERE id = '$goal_id' ";
+            mysqli_query($cn, $query);
+            break;
+        }else if($type == 'social'){
+            $query = "INSERT INTO social_goal(goal_id, title) VALUES ('$goal_id', '$title')";
+            mysqli_query($cn, $query);
+            $query = "UPDATE goals SET social_count = social_count + 1 WHERE id = '$goal_id' ";
+            mysqli_query($cn, $query);
+            break;
+        }else{
+            echo "ERROR";
+            break;
+        }
+        break;
+
+    case 'add_org_goal':
+        $org = $_SESSION['user_data']['organization'];
+        $title = $_REQUEST['title'];
+        $query = "INSERT INTO org_goal(org_id, title) VALUES ('$org', '$title')";
+        mysqli_query($cn, $query);
+        break;
+
+    default:
+        echo "ERROR";
+        break;
+        
 }
 ?>

@@ -1,5 +1,6 @@
 <?php
 $title = 'Events';
+require_once '../controller/connection.php';
 
 function get_content(){
 ?>
