@@ -167,6 +167,16 @@ body{
     width: 87%;
 }
 
+.event-list{
+    margin-left: 170px;
+}
+
+.event-list li{
+    padding: 20px;
+    list-style-type: disc;
+    color: #01BC81;
+}
+
 /* TASK  */
 .task-progression-box{
     border: 1px solid #CD3E71;

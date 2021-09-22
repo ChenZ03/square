@@ -48,7 +48,7 @@ function get_content(){
     <div class="goals-row">
         <div class="distribution" style="<?php echo ($org != NULL) ? 'flex:33.33%;' : 'flex:66.66%;'  ?>">
             <h2 class="text-white text-center box-text">Distribution</h2>
-            <div class="total-goal-chart mx-auto py-2" style="<?php echo ($org != NULL) ? 'width: 300px;' : 'width : 500px;' ?>">
+            <div class="total-goal-chart mx-auto py-2" style="<?php echo ($org != NULL) ? 'width: 300px;' : 'width : 330px;' ?>">
                 <canvas id="totalGoalChart"></canvas>
             </div>
         </div>
@@ -325,7 +325,7 @@ function get_content(){
             responsive : true,
             elements: {
                 line: {
-                    borderWidth: 2
+                    borderWidth: 3
                 }
             },
             scales: {

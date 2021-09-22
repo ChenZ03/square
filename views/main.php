@@ -27,6 +27,17 @@ function get_content(){
         $org_goal_query = "SELECT * FROM org_goal WHERE org_id = '$org'";
         $org_goals_num = mysqli_num_rows(mysqli_query($GLOBALS['cn'], $org_goal_query));
         $goals['Organization'] = intval($org_goals_num);
+    };
+
+    //Events
+    if($org != NULL){
+        $org_events_query = "SELECT * FROM event WHERE organization_id = '$org' AND date > NOW() ORDER BY date LIMIT 4 ";
+        $org_events = mysqli_fetch_all(mysqli_query($GLOBALS['cn'], $org_events_query), MYSQLI_ASSOC);
+        $events_query = "SELECT * FROM event WHERE user_id = '$userId' AND date > NOW() ORDER BY date LIMIT 4";
+        $events = mysqli_fetch_all(mysqli_query($GLOBALS['cn'], $events_query), MYSQLI_ASSOC);
+    }else{
+        $events_query = "SELECT * FROM event WHERE user_id = '$userId' AND date > NOW() ORDER BY date LIMIT 8";
+        $events = mysqli_fetch_all(mysqli_query($GLOBALS['cn'], $events_query), MYSQLI_ASSOC);
     }
 
 ?>
@@ -84,6 +95,52 @@ function get_content(){
         </div>
         <div class="event-box">
             <h2 class="text-white text-center box-text">EVENTS</h2>
+            <div class="row">
+                <div class="col-6">
+                    <?php if($org != NULL): ?>
+                        <h4 class="text-white text-center underline">Organization Events</h4>
+                        <?php if(mysqli_num_rows(mysqli_query($GLOBALS['cn'], $org_events_query)) < 1): ?>
+                            <h5 class="text-white text-center py-5">No upcoming events</h5>
+                        <?php else: ?>
+                            <ul class="event-list">
+                                <?php foreach($org_events as $org_event): ?>
+                                    <li class="text-white">
+                                        <?php echo $org_event['date'], ' - ', ' ', $org_event['title']  ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+                    <?php else: ?>
+                        <h4 class="text-white text-center underline" >Personal Events</h4>
+                        <?php if(mysqli_num_rows(mysqli_query($GLOBALS['cn'], $events_query)) < 1): ?>
+                            <h5 class="text-white text-center py-5">No upcoming events</h5>
+                        <?php else: ?>
+                            <ul class="event-list">
+                                <?php for($x = 0; $x < 4; $x++): ?>
+                                    <li>
+                                        <?php echo $events[0]['date'], ' - ', ' ', $events[0]['title'] ?>
+                                        <?php $events = array_shift($events) ?>
+                                    </li>
+                                <?php endfor; ?>
+                            </ul>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+                <div class="col-6">
+                    <h4 class="text-white text-center underline" >Personal Events</h4>
+                    <?php if(count($events) < 1): ?>
+                        <h5 class="text-white text-center py-5">No upcoming events</h5>
+                    <?php else: ?>
+                        <ul class="event-list">
+                            <?php foreach($events as $event): ?>
+                                <li>
+                                    <?php echo $event['date'], ' - ', ' ', $event['title'] ?>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
     </div>
 </body>
@@ -160,7 +217,7 @@ function get_content(){
             responsive : true,
             elements: {
                 line: {
-                    borderWidth: 2
+                    borderWidth: 3
                 }
             },
             scales: {
