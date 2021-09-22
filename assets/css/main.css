@@ -327,9 +327,6 @@ body{
     transform: scale(1.05);
 }
 
-
-
-
 .scroll::-webkit-scrollbar{
     width: 10px;
  }
@@ -348,6 +345,83 @@ body{
      background-color: #CD3E7180;
  }
 
+
+ /* EVENTS  */
+
+ .calendar {
+    border: 2px solid #6C6C73;
+    padding: 40px;
+    width: 50%;
+    height: 80%;
+ }
+
+ .calendar-select {
+     border-radius: 10px;
+     width: 70%;
+ }
+
+ .cal-select{
+     margin-left: 50px;
+ }
+
+ .cal-num{
+     padding-top: 40px;
+     padding-bottom: 40px;
+     flex-wrap: wrap;
+     width: 100%;
+     margin-left: -30px;
+ }
+
+ .cal-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    padding: 15px 35px 15px 35px;
+    color: white;
+    border: 2px solid #CD3E71;
+    /* border-radius: 100%; */
+    width: 120px ;
+    transition: 0.4s ease;
+    background-color: transparent;
+    height: 60px;
+    font-size: 30px;
+    margin-left: 10px;
+ }
+
+.cal-btn:hover{
+    transform: scale(1.2);
+}
+
+.event-details{
+    width: 40%;
+    height: 80%;
+    padding-left: 100px;
+}
+.details{
+    height: 80%;
+    overflow-y: scroll;
+}
+
+.events-text{
+    color: white;
+    padding: 30px;
+    
+}
+
+.events-text ol li{
+    list-style-type: circle;
+}
+
+div[class^='item']{
+    padding-bottom: 30px;
+}
+
+div[class^='item'] li{
+    list-style-type: decimal;
+    font-family: 'SitkaB';
+    font-weight: bold;
+    font-size: 20px;
+}
     
 
 

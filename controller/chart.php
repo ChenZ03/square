@@ -109,6 +109,78 @@ switch ($case){
         mysqli_query($cn, $query);
         break;
 
+    case 'get_event_details' :
+        $org = $_SESSION['user_data']['organization'];
+        $userId = $_SESSION['user_data']['user_id'];
+        $month = $_REQUEST['month'];
+        $day = $_REQUEST['day'];
+        $events = array();
+        $events_details_query_ps = "SELECT * FROM event WHERE user_id = '$userId' AND MONTH(date) = $month AND DAY(date) = $day ";
+        $events_details_ps = mysqli_fetch_all(mysqli_query($cn, $events_details_query_ps), MYSQLI_ASSOC);
+        foreach($events_details_ps as $ind_event){
+            $temp = [];
+            $temp['title'] = $ind_event['title'];
+            $temp['desc'] = $ind_event['description'];
+            $temp['date'] = $ind_event['date'];
+            array_push($events, $temp);
+        }
+        if($org != NULL){
+            $events_details_query_org = "SELECT * FROM event WHERE organization_id = '$org' AND MONTH(date) = $month AND DAY(date) = $day ";
+            $events_details_org = mysqli_fetch_all(mysqli_query($cn, $events_details_query_org), MYSQLI_ASSOC);
+            foreach($events_details_org as $org_event){
+                $temp = [];
+                $temp['title'] = $org_event['title'];
+                $temp['desc'] = $org_event['description'];
+                $temp['date'] = $org_event['date'];
+                array_push($events, $temp);
+            }
+        }
+
+        echo json_encode($events);
+        break;
+
+    case 'get_event':
+        $org = $_SESSION['user_data']['organization'];
+        $userId = $_SESSION['user_data']['user_id'];
+        $month = $_REQUEST['month'];
+        $month_query = "SELECT DAY(date) AS days FROM event WHERE user_id = '$userId' AND MONTH(date) = $month ";
+        $result = mysqli_fetch_all(mysqli_query($cn, $month_query), MYSQLI_ASSOC);
+        $days = [];
+        foreach($result as $day){
+            array_push($days,$day['days']);
+        }
+        if($org != NULL){
+            $org_query = "SELECT DAY(date) AS days FROM event WHERE organization_id = '$org' AND MONTH(date) = $month ";
+            $result2 = mysqli_fetch_all(mysqli_query($cn, $org_query), MYSQLI_ASSOC);;
+            foreach($result2 as $org_day){
+                array_push($days,$org_day['days']);
+            }
+        }
+        echo json_encode(array_unique($days));
+        break;
+
+    case 'add_event':
+        $org = $_SESSION['user_data']['organization'];
+        $userId = $_SESSION['user_data']['user_id'];
+        $title = $_REQUEST['title'];
+        $desc = $_REQUEST['desc'];
+        $date = $_REQUEST['date'];
+        $assign = $_REQUEST['assign'];
+        if($assign == 'organization'){
+            $query = "INSERT INTO event(organization_id, title, description, date) VALUES('$org', '$title', '$desc', '$date')"; 
+            mysqli_query($cn, $query);
+            break;
+        }else if($assign == 'self'){
+            $query = "INSERT INTO event(user_id, title, description, date) VALUES('$userId', '$title', '$desc', '$date')"; 
+            mysqli_query($cn, $query);
+            break;
+        }else{
+            echo 'ERROR';
+            break;
+        }
+        break;
+
+    
     default:
         echo "ERROR";
         break;
