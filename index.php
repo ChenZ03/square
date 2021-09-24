@@ -74,18 +74,16 @@
                     </select>
                 </div>
 
-                <div class="form-group py-1 reg">
-                    <div class="form-label text-white">
-                        <i class="bi bi-geo-fill"></i>
-                        <label for="organization">Organization</label>
-                    </div>          
-                    <select class="form-select form-select-sm" id="organization" required>
-                        <option selected disabled>Select your organization</option>
-                        <option value="self">NA (Select this for individual)</option>
-                        <?php foreach($org as $o): ?>
-                            <option value="<?php echo $o['id'] ?>"><?php echo $o['name'] ?></option>
-                        <?php endforeach; ?>
-                    </select>
+                <div class="form-group py-1 reg ">
+                    <div class="org-form" style="display: none;">
+                        <div class="form-label text-white">
+                            <i class="bi bi-geo-fill"></i>
+                            <label for="organization">Organization</label>
+                        </div>          
+                        <select class="form-select form-select-sm" id="organization" required>
+                            <option selected disabled value="self">Select your organization</option>
+                        </select>
+                    </div>  
                 </div>
             </form>
             <div class="button-group mt-5 mb-5">
@@ -186,6 +184,47 @@
                 alert('Please fill up all the form')
             }
             
+        })
+
+        $('#field').change(function(){
+            if($('#field').val() == 'school'){
+                $('#organization').children('option:not(:first)').remove();
+                $.ajax({
+                    type: 'post',
+                    url : '/controller/user.php',
+                    data:{
+                        action: 'get_school'
+                    },
+                    dataType: 'json',
+                    success: function(response){
+                        $('.org-form').css('display', 'block')
+                        
+                        for(var i of response){
+                            $('#organization').append("<option value='" + i['id'] + "'>" + i['name'] + "</option>")
+                        }
+                    }
+                })
+            }else if($('#field').val() == 'company'){
+                $('#organization').children('option:not(:first)').remove();
+                $.ajax({
+                    type: 'post',
+                    url : '/controller/user.php',
+                    data:{
+                        action: 'get_company'
+                    },
+                    dataType: 'json',
+                    success: function(response){
+                        $('.org-form').css('display', 'block')
+                        
+                        for(var i of response){
+                            $('#organization').append("<option value='" + i['id'] + "'>" + i['name'] + "</option>")
+                        }
+                    }
+                })
+            }else{
+                $('.org-form').css('display', 'none')
+            }
+           
         })
     </script>
 

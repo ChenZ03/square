@@ -65,6 +65,16 @@ switch ($case){
         unset($_SESSION);
         break;
 
+    case 'get_school':
+        $query = "SELECT * FROM organization WHERE id LIKE 'S%' ";
+        echo json_encode(mysqli_fetch_all(mysqli_query($cn, $query), MYSQLI_ASSOC));  
+        break;
+
+    case 'get_company':
+        $query = "SELECT * FROM organization WHERE id LIKE 'C%' ";
+        echo json_encode(mysqli_fetch_all(mysqli_query($cn, $query), MYSQLI_ASSOC));  
+        break;
+
     default :
         echo "Error";
         break;
