@@ -117,16 +117,17 @@
             let field = $('#field').val()
             let org = $('#organization').val()
             if(username != '' && password.length > 8 && passowrd2 == password && field != ''){
-                if((field == 'self' && org != 'self') || (field == 'school' && !org.startsWith('S') ) || (field == 'company' && !org.startsWith('C'))){
+                if((field == 'school' && !org.startsWith('S') ) || (field == 'company' && !org.startsWith('C'))){
                     alert('Please select organization according to your field')
                 }else{
                     let id = ''
-                    if(field == 'self'){
-                        id += 'I'
+                    if(field == 'school'){
+                        id += 'S'
                     }else if (field == 'company'){
                         id += 'C'
                     }else{
-                        id += 'S'
+                        id += 'I'
+                        org = 'self'
                     }
                     id += Date.now()
                     console.log(id)

@@ -116,10 +116,9 @@ function get_content(){
                             <h5 class="text-white text-center py-5">No upcoming events</h5>
                         <?php else: ?>
                             <ul class="event-list">
-                                <?php for($x = 0; $x < 4; $x++): ?>
+                                <?php for($x = 0; $x < 3; $x++): ?>
                                     <li>
-                                        <?php echo $events[0]['date'], ' - ', ' ', $events[0]['title'] ?>
-                                        <?php $events = array_shift($events) ?>
+                                        <?php echo $events[$x]['date'], ' - ', ' ', $events[$x]['title'] ?>
                                     </li>
                                 <?php endfor; ?>
                             </ul>
@@ -128,16 +127,30 @@ function get_content(){
                 </div>
                 <div class="col-6">
                     <h4 class="text-white text-center underline" >Personal Events</h4>
-                    <?php if(count($events) < 1): ?>
-                        <h5 class="text-white text-center py-5">No upcoming events</h5>
+                    <?php if($org != NULL): ?>
+                        <?php if(count($events) < 1): ?>
+                            <h5 class="text-white text-center py-5">No upcoming events</h5>
+                        <?php else: ?>
+                            <ul class="event-list">
+                                <?php foreach($events as $event): ?>
+                                    <li>
+                                        <?php echo $event['date'], ' - ', ' ', $event['title'] ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
                     <?php else: ?>
-                        <ul class="event-list">
-                            <?php foreach($events as $event): ?>
-                                <li>
-                                    <?php echo $event['date'], ' - ', ' ', $event['title'] ?>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
+                        <?php if(count($events) < 4): ?>
+                            <h5 class="text-white text-center py-5">No upcoming events</h5>
+                        <?php else: ?>
+                            <ul class="event-list">
+                                <?php for($x = 3; $x < count($events); $x++): ?>
+                                    <li>
+                                        <?php echo $events[$x]['date'], ' - ', ' ', $events[$x]['title'] ?>
+                                    </li>
+                                <?php endfor; ?>
+                            </ul>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </div>
             </div>
