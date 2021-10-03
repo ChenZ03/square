@@ -30,7 +30,7 @@ body{
 
 .header h1{
     font-size: 50px;
-    font-family: 'SitkaB';
+    font-family: 'SitkaB', sans-serif;
     font-weight: bold;
 }
 
