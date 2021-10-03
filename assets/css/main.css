@@ -1,10 +1,11 @@
-
+/* FONT */
 @font-face {
     font-family: 'SitkaB';
     src: url(/assets/fonts/sitka-small-599.ttf);
     font-weight: bold;
 }
 
+/* PAGE  */
 html{
     padding: 0;
     box-sizing: border-box;
