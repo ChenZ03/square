@@ -1,3 +1,6 @@
+
+/* FONTS  */
+
 @font-face {
     font-family: 'ss';
     src: url(/assets/fonts/Sitka\ Small.ttf);
@@ -8,6 +11,8 @@
     src: url(/assets/fonts/sitka-small-599.ttf);
     font-weight: bold;
 }
+
+/* PAGE  */
 
 html{
     box-sizing: border-box;
