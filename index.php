@@ -32,10 +32,10 @@
             <h5 class="text-center text-white text-base opacity-75">A friendly & effective management system</h5>
 
             <!-- LOGIN  -->
-            <h5 class="text-center mt-5 text-white text-lg log">Welcome Back</h5>
+            <h5 class="text-center mt-5 text-white text-lg log">Welcome Back!</h5>
             <form class="px-5 mb-5">
                 
-                <!-- REGISTER  -->
+                <!-- REGISTER  FORM-->
                 <h5 class="text-center mt-5 text-white text-lg reg">Register Now</h5>
                 <div class="form-group py-1 ">
                     <div class="form-label text-white">
@@ -156,6 +156,8 @@
             }
             
         })
+
+        // AJAX 
 
         $('#login').click(function(e){
             e.preventDefault;
